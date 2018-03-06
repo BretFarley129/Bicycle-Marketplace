@@ -1,0 +1,19 @@
+#new{
+    width: 93%;
+    height: 150px;
+    margin-left: 3%;
+    border: 1px solid black;
+    background-color: white;
+}
+#left{
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    height: 100%;
+}
+#right{
+    display: inline-block;
+    vertical-align: top;
+    width: 74%;
+    height: 100%;
+}

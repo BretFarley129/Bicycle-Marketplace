@@ -1,0 +1,111 @@
+#title{
+    width: 70%;
+    display: inline-block;
+    color: white;
+    font-family: Courier New, Courier, monospace, Helvetica, sans-serif;
+}
+.creation{
+    background-color: green;
+    color:white;
+    height: 40px;
+    width: 101%;
+    border: 2px solid black;
+}
+.updation{
+    background-color: #003000;
+    color:white;
+    height: 20px;
+    width: 100%;
+    border: 2px solid black;
+    margin: 2px;
+}
+.deletion{
+    background-color: red;
+    color:white;
+    height: 20px;
+    width: 100%;
+    border: 2px solid black;
+    margin: 2px;
+}
+h2{
+    color: black;
+    font-family: Courier New, Courier, monospace, Helvetica, sans-serif;
+}
+#links{
+    display: inline-block;
+    width: 250px;
+    height: 25px;
+    background-color: lightgrey;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+#main{
+    width: 100%;
+    box-sizing: border-box;
+    height: 900px;
+    text-align: center;
+    padding: 20px;
+}
+#top{
+    text-align: left;
+    width: 93%;
+    height: 300px;
+    margin-left: 3%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: lightgray;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+#bot{
+    padding-left: 20px;
+    box-sizing: border-box;
+    text-align: left;
+    width: 93%;
+    height: 590px;
+    margin-left: 3%;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: lightgray;
+
+}
+.bike{
+    width: 90%;
+    height: 200px;
+    margin-left: 4%;
+    border: 1px solid black;
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+#disp{
+    height: 83%;
+    width: 100%;
+    overflow: auto;
+}
+img{
+    max-width:150px;
+    max-height:150px;
+    margin-top: 10px;
+}
+.left{
+    width:20%;
+    display: inline-block;
+    vertical-align: top;
+}
+.middle{
+    width:67%;
+    text-align: left;
+    display: inline-block;
+    vertical-align: top;
+}
+.right{
+    width:10%;
+    display: inline-block;
+    vertical-align: top;
+}
+.r{
+    width: 100%;
+}

@@ -1,0 +1,21 @@
+<div class="container">
+  <form (submit)="onSubmit()" #myForm='ngForm'>
+    <table>
+      <tr>
+        <td class="l">*Email</td>
+        <td class="r"> <input name="user.email" [(ngModel)]="user.email" type="text"  class="text"> </td>
+      </tr>
+      <tr>
+        <td class="l">*Password</td>
+        <td class="r"> <input name="user.password" [(ngModel)]="user.password" type="password" class="text"> </td>
+      </tr>
+    </table>
+    <p *ngIf="failure && attempts != 5" class="error">{{failure}}</p>
+    <br *ngIf="!failure">
+    <br *ngIf="!failure">
+    <input *ngIf="attempts > 0" value="login" type="submit" class="butt">
+    <input *ngIf="attempts <= 0" value="login" type="submit" disabled="disabled" class="butt">
+  </form>
+  <p *ngIf="attempts > 0 && attempts < 5" class="error">You have {{attempts}} login attempts remaining</p>
+  <p *ngIf="attempts <= 0" class="error"> You have exceeded the maximum number of attempts.</p>
+</div>

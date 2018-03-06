@@ -1,0 +1,44 @@
+.left{
+    width:20%;
+    display: inline-block;
+    vertical-align: top;
+}
+.middle{
+    width:60%;
+    text-align: left;
+    display: inline-block;
+    vertical-align: top;
+}
+.right{
+    width:15%;
+    display: inline-block;
+    vertical-align: top;
+}
+.bike{
+    width: 90%;
+    height: 270px;
+    margin-left: 4%;
+    border: 1px solid black;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+#disp{
+    height: 83%;
+    width: 100%;
+    overflow: auto;
+}
+img{
+    max-width:200px;
+    max-height:200px;
+    box-sizing: border-box;
+    margin: 15px;
+    vertical-align: center;
+}
+h1{
+    margin-left: 40px;
+    font-family: Courier New, Courier, monospace, Helvetica, sans-serif;
+}
+sup{
+    font-size: 10px;
+}

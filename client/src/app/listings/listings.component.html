@@ -1,0 +1,71 @@
+<div id="title">
+  <h1>
+      Bicycle Marketplace
+  </h1>
+</div>
+<div id="links">
+  <a [routerLink]="['/browse']">Browse</a> | 
+  <a [routerLink]="['/listings']">My listings</a> | 
+  <a href="" (click)="logout()">Logout</a>
+</div>
+  <div id="main">
+    <div id="top">
+        <h2>Create Listing</h2>
+        <div id="new">
+            <form (submit)="addBike()" #myForm='ngForm'>
+                <div class="left">
+                    <p>Image upload</p>
+                    <input type="text" name="newBike.img_url" [(ngModel)]="newBike.img_url">
+                    <img src="{{newBike.img_url}}">
+                </div>
+                <div class="middle">
+                <p>Title</p>
+                <input type="text" name="newBike.title" [(ngModel)]="newBike.title">
+                <p> Description</p>
+                <textarea rows="3" cols="80" name="newBike.description" [(ngModel)]="newBike.description"> </textarea>
+                </div>
+                <div class="right">
+                  <p>Price</p>
+                  <input type="number" name="newBike.price" [(ngModel)]="newBike.price" class="r">
+                  <p>Location</p>
+                  <input type="text" name="newBike.location" [(ngModel)]="newBike.location" class="r">
+                  <br>
+                  <br>
+                  <input type="submit" value="Create" class="creation">
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <br>
+    <div id="bot">
+        <h2>Edit/Delete Listings</h2>
+        <div id="disp">
+          <div class="bike" *ngFor="let bike of bikes; let i = index">
+            <form>
+              <div class="left">
+                  <p>Image Upload</p>
+                  <input type="text" name="bikes[i].img_url" [(ngModel)]="bikes[i].img_url">
+                  <img src="{{bikes[i].img_url}}">
+                </div>
+                <div class="middle">
+                  <p>Title</p>
+                  <input type="text" name="bikes[i].title" [(ngModel)]="bikes[i].title">
+                  <p>Description</p>
+                  <textarea name="bikes[i].description" [(ngModel)]="bikes[i].description" rows="3" cols="80"> </textarea>
+                </div>
+                <div class="right">
+                  <p>Price</p>
+                  <input type="number" name="bikes[i].price" [(ngModel)]="bikes[i].price" class="r">
+                  <p>Location</p>
+                  <input type="text" name="bikes[i].location" [(ngModel)]="bikes[i].location" class="r">
+                  <br>
+                  <button (click)="updateBike(bikes[i])" class="updation"> Update </button>
+                  <br>
+                  <button (click)="deleteBike(bikes[i])" class="deletion"> Delete </button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>

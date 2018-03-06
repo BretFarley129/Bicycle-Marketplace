@@ -1,0 +1,39 @@
+<h2>Create Listing</h2>
+<div id="new">
+    <form (submit)="onSubmit()" #myForm='ngForm'>
+        <div id="left">
+            <p>Image upload</p>
+            <input type="text" name="newBike.img_url" [(ngModel)]="newBike.img_url">
+        </div>
+        <div id="right">
+            <table>
+                <tr>
+                    <td>Title</td>
+                    <td>Price</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="newBike.title" [(ngModel)]="newBike.title">
+                    </td>
+                    <td>
+                        <input type="text" name="newBike.price" [(ngModel)]="newBike.price">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Location</td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea rows="3" cols="80" name="newBike.description" [(ngModel)]="newBike.description"></textarea>
+                    </td>
+                    <td>
+                        <input type="text" name="newBike.location" [(ngModel)]="newBike.location">
+                        <br>
+                        <input type="submit" value="Create">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

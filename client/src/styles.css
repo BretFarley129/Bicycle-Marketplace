@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("https://c.wallhere.com/photos/5c/6a/street_stories_leicax1-406969.jpg!d");
+    box-sizing: border-box;
+    padding: 10px;
+    max-height: 100vh;
+ }

@@ -1,0 +1,22 @@
+<h2>Edit/Delete Listings</h2>
+<div id="disp">
+  <div class="bike" *ngFor="let bike of bikes">
+    <form>
+      <div class="left">
+          <img src="{{bike.img_url}}">
+        </div>
+        <div class="middle">
+          <h1>{{bike.title}}</h1>
+          <p>{{bike.description}}</p>
+        </div>
+        <div class="right">
+          <h1>{{bike.price}}</h1>
+          <p>{{bike.location}}</p>
+          <br>
+          <button (click)="updateBike(bike)"> Update </button>
+          <br>
+          <button (click)="deleteBike(bike)"> Delete </button>
+        </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="container">
+  <form (submit)="onSubmit()" #myForm='ngForm'>
+    <table>
+      <tr>
+        <td>*First Name</td>
+        <td> 
+          <input 
+          name="newUser.first" 
+          [(ngModel)]="newUser.first" 
+          type="text"
+          required
+          #first = "ngModel"
+          /> 
+        </td>
+        <td style="color: red" *ngIf="!first.valid">Please enter a first name</td>
+      </tr>
+      <tr>
+        <td>*Last Name</td>
+        <td> 
+          <input 
+          name="newUser.last" 
+          [(ngModel)]="newUser.last" 
+          type="text"
+          required
+          #last = "ngModel"
+          /> 
+        </td>
+        <td style="color: red" *ngIf="!last.valid">Please enter a last name</td>
+      </tr>
+      <tr>
+        <td>*Email</td>
+        <td> 
+          <input 
+          name="newUser.email" 
+          [(ngModel)]="newUser.email" 
+          type="text"
+          required
+          #email = "ngModel"
+          pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+          /> 
+        </td>
+        <td style="color: red" *ngIf="!email.valid">Please enter a proper email</td>
+      </tr>
+      <tr>
+        <td>*Password</td>
+        <td> 
+          <input 
+          name="newUser.password" 
+          [(ngModel)]="newUser.password" 
+          type="password"
+          required
+          #password = "ngModel"
+          minlength="8"
+          /> 
+        </td>
+        <td style="color: red" *ngIf="!password.valid">Password must be at least 8 characters</td>
+      </tr>
+      <tr>
+        <td>*Confirm Password</td>
+        <td> 
+          <input 
+          name="newUser.confirm" 
+          [(ngModel)]="newUser.confirm" 
+          type="password"
+          required
+          #confirm = "ngModel"
+          minlength="8"
+          /> 
+        </td>
+        <td style="color: red" *ngIf="newUser.password!=newUser.confirm">Passwords must match</td>
+      </tr>
+    </table>
+    <br>
+    <input value="Register" type="submit" [disabled]="!myForm.valid" class="butt">
+  </form>
+  <p *ngIf="failure">{{failure}}</p>
+</div>

@@ -1,0 +1,45 @@
+<div id="title">
+  <h1>
+      Bicycle Marketplace
+  </h1>
+</div>
+<div id="links">
+  <a [routerLink]="['/browse']">Browse</a> | 
+  <a [routerLink]="['/listings']">My listings</a> | 
+  <a href="" (click)="logout()">Logout</a>
+</div>
+<div id="main">
+  <div id="search">
+    <form>
+        Filter:
+      <input type="text" id="searchbar" name="search.filter" [(ngModel)]="search.filter">
+    </form>
+  </div>
+  <br>
+  <div id="contents">
+    <div id="buffer">
+
+      <div *ngFor="let bike of this.bikes._value; let i = index" id="{{i}}" >
+        <div class="one" *ngIf="checkString(bike.title, this.search.filter)">
+          <div class="left">
+            <img src="{{bike.img_url}}">
+          </div>
+          <div class="middle">
+            <h1>{{bike.title}}</h1>
+            <p>{{bike.description}}</p>
+          </div>
+          <div class="right">
+            <h1>${{bike.price}}</h1>
+            <p>{{bike.location}}</p>
+            <form (submit)="deleteBike(bike, i)">
+              <input type="submit" value="DELETE" *ngIf="bike._user._id == user._id"/> 
+            </form>
+            <button *ngIf="bike._user._id != user._id" (click)="contact(bike)">Contact</button>
+          </div>
+        </div>
+        <br *ngIf="checkString(bike.title, this.search.filter)">
+      </div>
+
+    </div>
+  </div>
+</div>

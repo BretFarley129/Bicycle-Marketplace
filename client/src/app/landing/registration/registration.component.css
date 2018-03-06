@@ -1,0 +1,22 @@
+.container{
+    background-color: white;
+    border-radius: 10px;
+    min-height: 300px;
+    margin: 20px;
+    box-sizing: border-box;
+    padding: 25px;
+    width: 90%;
+    border: 1px solid black;
+}
+table{
+    width: 90%;
+}
+.butt{
+    width: 55%;
+    background-color: #3434F2;
+    height: 25px;
+    border-radius: 5px;
+    color:white;
+    font-size: 15px;
+    border: 2px solid black;
+}
