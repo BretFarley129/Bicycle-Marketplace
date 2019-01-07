@@ -15,6 +15,7 @@ require('./server/config/mongoose.js');
 
 var router = require('./server/config/routes.js');
 
+console.log('in server.js')
 
 router(app);
 

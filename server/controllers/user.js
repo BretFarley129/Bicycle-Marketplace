@@ -7,6 +7,7 @@ module.exports = {
   //Login
   login: function(req,res){
     console.log('In the db');
+    console.log(req.body)
     //Search to see if email is in DB
     User.findOne({email: req.body.email}, function(err, theUser){ 
       if(err) {
@@ -65,6 +66,7 @@ module.exports = {
       }
       else{
         if(!exists){  //Email is available
+          console.log('email is available')
           //Stage new user for creation
           var user = new User({
             first: req.body.first,

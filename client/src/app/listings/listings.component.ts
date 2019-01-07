@@ -20,20 +20,20 @@ export class ListingsComponent implements OnInit {
 
   ngOnInit() {
     //For development
-    let observable = this._http.login({email: 'test@test.com', password: "testtest"})
-    observable.subscribe(
-      (data)=>{
-        console.log(data.json())
-        this._http.setUser(data.json())
-        this.user = this._http.fetchUser();
-        this.fetchListings();
-        this.userId = this.user._id;
-      }
-    )
-    // this._http.verifySession();
-    // this.user = this._http.fetchUser();
-    // this.fetchListings();
-    // this.userId = this.user._id;
+    // let observable = this._http.login({email: 'test@test.com', password: "testtest"})
+    // observable.subscribe(
+    //   (data)=>{
+    //     console.log(data.json())
+    //     this._http.setUser(data.json())
+    //     this.user = this._http.fetchUser();
+    //     this.fetchListings();
+    //     this.userId = this.user._id;
+    //   }
+    // )
+    this._http.verifySession();
+    this.user = this._http.fetchUser();
+    this.fetchListings();
+    this.userId = this.user._id;
   }
   logout(){
     this._http.logout();

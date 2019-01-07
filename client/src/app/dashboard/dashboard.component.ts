@@ -15,16 +15,16 @@ export class DashboardComponent implements OnInit {
   bikes: BehaviorSubject<any[]> = new BehaviorSubject([]);
   ngOnInit() {
     //Code for development
-    let observable = this._http.login({email: 'test@test.com', password: "testtest"})
-    observable.subscribe(
-      (data)=>{
-        this.fetchBikes();
-        this.user = this._http.fetchUser();
-      }
-    )
+    // let observable = this._http.login({email: 'test@test.com', password: "testtest"})
+    // observable.subscribe(
+    //   (data)=>{
+    //     this.fetchBikes();
+    //     this.user = this._http.fetchUser();
+    //   }
+    // )
     // this._http.verifySession();
-    // this.fetchBikes();
-    // this.user = this._http.fetchUser();
+    this.fetchBikes();
+    this.user = this._http.fetchUser();
   }
 
   logout(){
