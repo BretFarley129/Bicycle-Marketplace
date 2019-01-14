@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  newUser ={first: "", last: '', email: "", password: ''}
+  newUser ={first: "", last: '', email: "", password: ''} 
   failure = '';
   user;
   constructor(private _http: HttpService, private router: Router) { }

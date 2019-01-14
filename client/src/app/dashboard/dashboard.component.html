@@ -1,45 +1,107 @@
-<div id="title">
-  <h1>
-      Bicycle Marketplace
-  </h1>
-</div>
-<div id="links">
-  <a [routerLink]="['/browse']">Browse</a> | 
-  <a [routerLink]="['/listings']">My listings</a> | 
-  <a href="" (click)="logout()">Logout</a>
-</div>
-<div id="main">
-  <div id="search">
-    <form>
-        Filter:
-      <input type="text" id="searchbar" name="search.filter" [(ngModel)]="search.filter">
+
+
+
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" (click)="toggleNav()">☰</a>
+    <div id="spacer">
+    <h3> Filter </h3>
+    <form #filterForm='ngForm' id="filterForm">
+        <div class="form-group">
+            <label for="itemTitle"> Item </label>
+            <input type="text" class="form-control" id="itemTitle" name="search.title" [(ngModel)]="search.title" placeholder="Search by name">
+        </div>
+        <div class="form-group">
+            <label for="itemDescription">Description</label>
+            <input type="text" class="form-control" id="itemDescription" name="search.description" [(ngModel)]="search.description" placeholder="Search by Description">
+        </div>
+        <div class="form-group">
+            <label for="minPrice">Minimum Price</label>
+            <input type="number" class="form-control" id="minPrice" name="search.minPrice" [(ngModel)]="search.minPrice">
+        </div>
+        <div class="form-group">
+            <label for="maxPrice">Maximum Price</label>
+            <input type="number" class="form-control" id="maxPrice" name="search.maxPrice" [(ngModel)]="search.maxPrice">
+        </div>
     </form>
   </div>
+</div>
+
+
+<div id="shopdisp">
+  <!-- <br><br> -->
   <br>
-  <div id="contents">
-    <div id="buffer">
+  <div *ngFor="let bike of bikesArray; let i = index" id="{{i}}" style="display: inline-block">
+    <div class="temp" *ngIf="filterAll(bike)">
 
-      <div *ngFor="let bike of this.bikes._value; let i = index" id="{{i}}" >
-        <div class="one" *ngIf="checkString(bike.title, this.search.filter)">
-          <div class="left">
-            <img src="{{bike.img_url}}">
-          </div>
-          <div class="middle">
-            <h1>{{bike.title}}</h1>
-            <p>{{bike.description}}</p>
-          </div>
-          <div class="right">
-            <h1>${{bike.price}}</h1>
-            <p>{{bike.location}}</p>
-            <form (submit)="deleteBike(bike, i)">
-              <input type="submit" value="DELETE" *ngIf="bike._user._id == user._id"/> 
-            </form>
-            <button *ngIf="bike._user._id != user._id" (click)="contact(bike)">Contact</button>
-          </div>
+      <div class="card" style="width: 18rem;">
+        <div style="text-align:center; margin-top:5%">
+          <img class="card-img-top" src="{{bike.img_url}}" alt="Card image cap">
         </div>
-        <br *ngIf="checkString(bike.title, this.search.filter)">
+          <div class="card-body">
+            <h5 class="card-title">{{bike.title}}</h5>
+            <p class="card-title">${{bike.price}}<sup>.00</sup></p>
+            <p class="card-text">{{bike.description}}</p>
+            <!-- <form (submit)="deleteBike(bike, i)">
+                <input type="submit" value="DELETE" *ngIf="bike._user._id == user._id" class="btn btn-danger"/> 
+            </form> -->
+            <!-- <button *ngIf="bike._user._id != user._id" (click)="contact(bike)" class="btn btn-primary">Contact</button> -->
+            <a *ngIf="bike._user._id != user._id" href="#" class="btn btn-primary" data-toggle="modal" data-target="#contactModal" (click)="setTempContact(bike)">Contact</a>
+            <a *ngIf="bike._user._id == user._id" href="#" class="btn btn-danger" data-toggle="modal" data-target="#deleteBikeModal" (click)="setTempDelete(bike)">Delete</a>
+          </div>
+          
       </div>
-
     </div>
   </div>
-</div>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                Modals for Items
+
+      - These currently do not work. seeing that this is less important than everything else,
+        I will leave the fix for a later time.
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div  class="modal fade  bd-example-modal-md" id="contactModal">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Inquire about this bike</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-left">
+              <div class="container">
+                <p>Name: {{contactBike._user.first}} {{contactBike._user.last}}</p>
+                <p>Email: {{contactBike._user.email}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="modal fade bd-example-modal-md" id="deleteBikeModal" tabindex="-1" role="dialog" aria-labelledby="deleteBikeModal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete this beautiful bike?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeDelete>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form (submit)="deleteBike(destroyBike)" #myForm='ngForm'>
+                <div class="modal-body">
+                  <p>Remove this listing? This cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger mb-2">Confirm Delete</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+    <!-- END MODAL SECTION -->
+
+  </div>
+  <!-- END SHOP DISP -->

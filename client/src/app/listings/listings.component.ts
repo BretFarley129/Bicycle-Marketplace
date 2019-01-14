@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { HttpService } from '../http.service';
 
 
@@ -16,24 +16,43 @@ export class ListingsComponent implements OnInit {
 
   bikes = [];
 
+  editBike = {};
+  destroyBike = {};
+
   constructor(private _http: HttpService) { }
 
   ngOnInit() {
+    
     //For development
     // let observable = this._http.login({email: 'test@test.com', password: "testtest"})
     // observable.subscribe(
     //   (data)=>{
+    //     console.log('development code active in listings component')
     //     console.log(data.json())
     //     this._http.setUser(data.json())
     //     this.user = this._http.fetchUser();
-    //     this.fetchListings();
+    //     this.formatCreationDate();
+    //     this.fetchListings(); 
     //     this.userId = this.user._id;
     //   }
     // )
+    // End For
+
     this._http.verifySession();
     this.user = this._http.fetchUser();
     this.fetchListings();
     this.userId = this.user._id;
+  }
+
+  @ViewChild('closeDelete') closeDelete;
+  
+  formatCreationDate(){
+    let tempDate = new Date(this.user.createdAt)
+    let month = tempDate.getMonth();
+    let day = tempDate.getDate();
+    let year = tempDate.getFullYear();
+    let prettyDate = `${month+1}/${day}/${year}`
+    this.user.createdAt = prettyDate
   }
   logout(){
     this._http.logout();
@@ -76,6 +95,7 @@ export class ListingsComponent implements OnInit {
     observable.subscribe(
       data=>{
         console.log("Delete Successful.")
+        this.closeDelete.nativeElement.click();
         this.fetchListings();
       }
     )
@@ -89,6 +109,13 @@ export class ListingsComponent implements OnInit {
         this.fetchListings();
       }
     )
+  }
+
+  editModal(bike){
+    this.editBike = bike;
+  }
+  deleteModal(bike){
+    this.destroyBike = bike;
   }
 
 }

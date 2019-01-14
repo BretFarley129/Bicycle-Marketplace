@@ -45,13 +45,7 @@ img{
     display: inline-block;
     vertical-align: top;
 }
-#main{
-    width: 100%;
-    box-sizing: border-box;
-    height: 800px;
-    /* text-align: center; */
-    padding: 20px;
-}
+
 #search{
     width: 100%;
     height: 40px;
@@ -68,7 +62,6 @@ img{
 #contents{
     height: 83%;
     width: 100%;
-    /* background-color: white; */
     border-radius: 10px;
     box-sizing: border-box;
     padding: 20px;
@@ -77,3 +70,146 @@ img{
 #buffer{
     height: 100%;
 }
+
+#sidebar1{
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    background-color: whitesmoke;
+    border: 2px solid red;
+    vertical-align: top;
+    padding: 1%;
+}
+
+.bikeBox{
+    width: 33%;
+    height: 38vh;
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+.imgBox{
+    height:100%;
+    width: 100%;
+    border: 1px solid green;
+    display: inline-block;
+}
+
+#spacer{
+    box-sizing: border-box;
+    padding: 5%
+}
+
+#main{
+    width: 100%;
+    box-sizing: border-box;
+    height: 92vh;
+    margin-right: 0;
+    /* padding: 20px; */
+
+}
+
+#shopdisp{
+    height: 100%;
+    width: 79vw;
+    display: inline-block;
+    background-color: whitesmoke;
+    /* border: 2px solid blue; */
+    vertical-align: top;
+    margin-left: 20%;
+    box-sizing: border-box;
+}
+
+.img_container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%
+    /* background-color: red; */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    vertical-align: top;
+    background-color: black;
+    text-align: left;
+}
+.container:hover .overlay {
+    opacity: .8;
+}
+
+.temp{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2.5vw;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sidebar {
+    height: 100%;
+    width: 20vw;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    margin-top: 17vh;
+
+  }
+  
+  .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    /* position: fixed; */
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    margin-right: 1vh;
+    width: 3vh;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+   
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }

@@ -7,8 +7,29 @@ import { HttpService } from '../../http.service';
   styleUrls: ['./featured.component.css']
 })
 export class FeaturedComponent implements OnInit {
-
+  // allBikes = {};
   bike = {};
+  featured = {
+    title: '',
+    price: '',
+    img_url: '',
+    location: '',
+    description: ''
+  };
+  latest = {
+    title: '',
+    price: '',
+    img_url: '',
+    location: '',
+    description: ''
+  };
+  cheap = {
+    title: '',
+    price: '',
+    img_url: '',
+    location: '',
+    description: ''
+  };
   constructor(private _http: HttpService) { }
 
   ngOnInit() {
@@ -19,7 +40,11 @@ export class FeaturedComponent implements OnInit {
     let observable = this._http.randomBike();
     observable.subscribe(
       (data)=>{
-        this.bike = data.json()
+        let allBikes = data.json();
+        this.featured = allBikes.feat;
+        this.latest = allBikes.latest;
+        this.cheap = allBikes.cheap;
+        console.log(this.featured)
       }
     )
   }

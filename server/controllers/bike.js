@@ -32,7 +32,26 @@ module.exports = {
     // Otherwise, just return the current value of the bike of the day
     else{
       console.log(dailyBike)
-      res.json(dailyBike)
+      Bike.findOne({}).sort('price').exec(function(err, cheapBike){
+        if (err){
+          console.log(err)
+        }
+        else{
+          Bike.findOne({}).sort('-createdAt').exec(function(err, newBike){
+            if (err){
+              console.log(err)
+            }
+            else{
+              let assortedBikes = {
+                feat: dailyBike,
+                cheap: cheapBike,
+                latest: newBike
+              }
+              res.json(assortedBikes)
+            }
+          })
+        }
+      })
     }
   },
 

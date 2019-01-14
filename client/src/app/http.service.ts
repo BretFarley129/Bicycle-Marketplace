@@ -20,6 +20,8 @@ export class HttpService {
     console.log("current user set to:", this.currentUser)
   }
   fetchUser(){
+    console.log('user fetched:')
+    console.log(this.currentUser)
     return this.currentUser
   }
   logout(){
@@ -76,12 +78,14 @@ export class HttpService {
   updateBike(bike){
     return this._http.patch(`/bikes/${bike._id}`, bike)
   }
-
+  
+ 
   //Methods for browse page
   getAllBikes(){
     return this._http.get('/bikes');
   }
   deleteBike(bike_id){
+    console.log('in http delete function')
     return this._http.delete(`/delete/${bike_id}/${this.currentUser._id}`)
   }
 }

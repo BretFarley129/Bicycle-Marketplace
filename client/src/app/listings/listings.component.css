@@ -43,22 +43,38 @@ h2{
 #main{
     width: 100%;
     box-sizing: border-box;
-    height: 900px;
-    text-align: center;
+    /* height: 900px; */
+    /* text-align: center; */
     padding: 20px;
+    background-color: whitesmoke;
 }
 #top{
     text-align: left;
-    width: 93%;
-    height: 300px;
-    margin-left: 3%;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: lightgray;
+    width: 100%;
+    height: 45vh;
     box-sizing: border-box;
-    padding-left: 20px;
+    /* border: 1px solid black; */
+    /* background-color: lightgray; */
+    /* margin-left: 3%; */
+    /* padding-left: 20px; */
+    /* border-radius: 10px; */
 }
-#bot{
+#userInfo{
+    display: inline-block;
+    height: 100%;
+    width: 29%;
+    vertical-align: top;
+    /* border: 1px solid red; */
+}
+#newListing{
+    display: inline-block;
+    height: 100%;
+    width: 70%;
+    vertical-align: top;
+    /* border: 1px solid green; */
+}
+
+/* #bot{
     padding-left: 20px;
     box-sizing: border-box;
     text-align: left;
@@ -69,7 +85,7 @@ h2{
     border: 1px solid black;
     background-color: lightgray;
 
-}
+} */
 .bike{
     width: 90%;
     height: 200px;
@@ -108,4 +124,21 @@ img{
 }
 .r{
     width: 100%;
+}
+
+/* New Stylings */
+#shopdisp{
+    /* height: 100%; */
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.temp{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2.5vw;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
 }

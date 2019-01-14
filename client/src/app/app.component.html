@@ -1,2 +1,258 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<router-outlet></router-outlet>
+<script>
+    $(document).ready(function(){
+        $('#loginForm').submit(function() {
+            console.log('this should trigger')
+            $('#loginModal').modal('hide');
+            return false;
+        });
+        $('#loginBtn').click(function() {
+            console.log('this should trigger')
+            $('#loginModal').modal('hide');
+            return false;
+        });
+        $('#signupForm').submit(function() {
+            $('#signupModal').modal('hide');
+            return false;
+        });
+
+    });
+</script>
+<!-- <div class="container"> -->
+    <nav class="navbar navbar-expand-sm bg-4 navbar-dark fixed-top" style="background-color:black; height: 17vh" id="myNavbar">
+        
+        <div style="display: inline-block">
+        </div>
+        <h2>
+            <a class="navbar-brand" style="margin-left: 20px;" href="">Bicycle Marketplace</a>
+        </h2>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            If Logged In
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="user">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/browse']">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/listings']">Your Listings <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" (click)="logout()">Logout</a>
+                </li>
+                    
+                
+            </ul>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            If NOT Logged In
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="!user">
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">Sign Up <span class="sr-only">(current)</span></a>
+                </li>
+                
+                <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a>
+                </li>
+                    
+                
+            </ul>
+        </div>
+
+    </nav>
+    <div style="height: 17vh">
+    </div>
+
+    <!-- Modals -->
+    <div >
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Log In Modal
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true" #loginModal>
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeLogin>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-left">
+                        <div class="container">
+    
+    
+                                <form (submit)="loginSubmit()" #myForm='ngForm' id="loginForm">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" name="userLogin.email" [(ngModel)]="userLogin.email" aria-describedby="emailHelp" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" name="userLogin.password" [(ngModel)]="userLogin.password" placeholder="Password">
+                                    </div>
+                                    <button *ngIf="attempts > 0" type="submit" class="btn btn-primary" id="loginBtn">Submit</button>
+                                    <button *ngIf="attempts <= 0" type="submit" class="btn btn-primary" disabled="disabled">Submit</button>
+
+                                    <p *ngIf="failure && attempts != 5" class="error">{{failure}}</p>
+                                    <br *ngIf="!failure">
+                                </form>
+                                <p *ngIf="attempts > 0 && attempts < 5" class="error">You have {{attempts}} login attempts remaining</p>
+                                <p *ngIf="attempts <= 0" class="error"> You have exceeded the maximum number of attempts.</p>
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            About Modal
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalTitle" aria-hidden="true" #loginModal>
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">About this site</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeLogin>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-left">
+                        <div class="container">
+                            This website is a craigslist-like web application where users can list products
+                            (bikes) that they would like to sell and contact other users about listed goods
+                            via email. It utilizes a MongoDB database, Node.JS server, Express back end, and 
+                            Angular 4 front end. I used Bootstrap to make it look a little prettier. 
+                            <br><br>
+                            If you don't feel like signing up, please log in using the following credentials:
+                            <br>
+                            Email: guest@guest.com
+                            <br>
+                            Password: guestguest
+                            <br><br>
+                            This website is intended as a display for a personal project and not as a serious
+                            marketplace.
+                            <br><br>
+                            Thanks for stopping by!
+                            <br>
+                            Bret Farley 
+                            <br>
+                            <a href="http://bretafarley.com" target="_blank">Check out my portfolio!</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Sign Up Modal
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeSignup>
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-left">
+                        <div class="container">
+    
+    
+                            <form (submit)="signupSubmit()" #myForm='ngForm' id="signupForm">
+                                <div class="form-group">
+                                    <label for="signupFirst">First Name</label>
+                                    <span style="color: red" *ngIf="!first.valid">Please enter a first name</span>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="signupFirst" 
+                                        name="newUser.first" 
+                                        [(ngModel)]="newUser.first" 
+                                        required
+                                        #first = "ngModel"
+                                        placeholder="Jon">
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="signupLast">Last Name</label>
+                                    <span style="color: red" *ngIf="!last.valid">Please enter a last name</span>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="signupLast" 
+                                        name="newUser.last" 
+                                        [(ngModel)]="newUser.last" 
+                                        #last = "ngModel"
+                                        required 
+                                        placeholder="Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signupEmail">Email address</label>
+                                    <span style="color: red" *ngIf="!email.valid">Please enter a proper email address</span>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="signupEmail" 
+                                        name="newUser.email" 
+                                        [(ngModel)]="newUser.email" 
+                                        required
+                                        #email = "ngModel"
+                                        pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)" 
+                                        aria-describedby="emailHelp" 
+                                        placeholder="jdoe@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signupPassword">Password</label>
+                                    <span style="color: red" *ngIf="!password.valid">Password must be at least 8 characters</span>
+                                    <input 
+                                        type="password" 
+                                        class="form-control" 
+                                        id="signupPassword"
+                                        name="newUser.password" 
+                                        [(ngModel)]="newUser.password" 
+                                        required
+                                        #password = "ngModel"
+                                        minlength="8" 
+                                        placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signupConfirm">Confirm Password</label>
+                                    <span style="color: red" *ngIf="newUser.password!=newUser.confirm">Passwords must match</span>
+                                    <input 
+                                        type="password" 
+                                        class="form-control" 
+                                        id="signupConfirm" 
+                                        name="newUser.confirm" 
+                                        [(ngModel)]="newUser.confirm" 
+                                        required
+                                        #confirm = "ngModel"
+                                        minlength="8" 
+                                        placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+
+                            </form>
+    
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Main Application
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <router-outlet></router-outlet>
+
+<!-- </div> -->
